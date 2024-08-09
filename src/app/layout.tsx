@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import { Kanit } from 'next/font/google'
 import './globals.css'
 
-import Image from 'next/image'
-import Link from 'next/link'
-import NavigationBar from 'ii/components/NavigationBar'
+import NavPanel from 'ii/components/NavPanel'
+import SidePanel from 'ii/components/SidePanel'
 
 const font = Kanit({ subsets: ['latin'], weight: ['400'] })
 
@@ -21,23 +20,17 @@ const RootLayout = ({
   return (
     <html lang="en">
       <body className={font.className}>
-        <main className="relative min-h-screen p-4">
+        <main className="relative min-h-screen p-8">
           <div className="absolute flex top-0 left-0 h-screen w-screen -z-10">
             <div className="flex-1"></div>
-            <div className="w-[calc(25vw+0.5rem)] bg-[#5CCBFF]"></div>
+            <div className="w-[calc(25vw+1rem)] bg-[#5CCBFF]"></div>
           </div>
-          <div className="flex bottom rounded-lg shadow-xl h-[calc(100vh-2rem)] bg-white">
+          <div className="flex bottom rounded-xl shadow-xl h-[calc(100vh-4rem)] bg-white">
             <div className="flex-1 flex">
-              <NavigationBar />
+              <NavPanel />
               <div className="flex-1 p-4">{children}</div>
             </div>
-            <Image
-              className="w-1/4 bg-blue-800 rounded-r-lg"
-              alt="side-panel-gb"
-              width={400}
-              height={800}
-              src="/side-panel-bg.png"
-            />
+            <SidePanel />
           </div>
         </main>
       </body>

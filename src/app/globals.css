@@ -67,3 +67,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.side-panel-bg {
+  /* background: url('side-panel-bg.png') no-repeat; */
+}

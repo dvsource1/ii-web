@@ -2,8 +2,8 @@ import {
   CreditCard,
   Database,
   Highlighter,
+  HomeIcon,
   NotebookTabs,
-  Shield,
   Trash,
   Users,
 } from 'lucide-react'
@@ -11,6 +11,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const MAIN_NAVIGATIONS = [
+  {
+    icon: HomeIcon,
+    active: true,
+    href: '/dashboard',
+  },
   {
     icon: NotebookTabs,
     href: '/lessons',
@@ -24,10 +29,6 @@ const MAIN_NAVIGATIONS = [
     href: '/students',
   },
   {
-    icon: Shield,
-    href: '/students',
-  },
-  {
     icon: CreditCard,
     href: '/payments',
   },
@@ -37,9 +38,9 @@ const MAIN_NAVIGATIONS = [
   },
 ]
 
-const NavigationBar = () => {
+const NavPanel = () => {
   return (
-    <nav className="w-16 bg-blue-200 flex flex-col justify-between">
+    <nav className="w-16 bg-blue-200 flex flex-col justify-between rounded-lg m-2">
       <div className="h-20 flex items-center justify-center">
         <Link href={'/'}>
           <Image
@@ -56,7 +57,13 @@ const NavigationBar = () => {
           {MAIN_NAVIGATIONS.map((nav, index) => (
             <li key={index}>
               <Link href={nav.href}>
-                <nav.icon className="w-12 h-8 px-2 py-1 text-gray-500 hover:text-blue-400 hover:cursor-pointer" />
+                <nav.icon
+                  className={`w-12 h-8 px-2 py-1 ${
+                    nav.active
+                      ? 'text-blue-400 bg-white/50 rounded-lg shadow-sm'
+                      : 'text-gray-500'
+                  } hover:text-blue-400 hover:cursor-pointer`}
+                />
               </Link>
             </li>
           ))}
@@ -71,4 +78,4 @@ const NavigationBar = () => {
   )
 }
 
-export default NavigationBar
+export default NavPanel
