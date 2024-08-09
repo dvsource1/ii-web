@@ -62,7 +62,7 @@ const NavPanel = () => {
                     nav.active
                       ? 'text-blue-400 bg-white/50 rounded-lg shadow-sm'
                       : 'text-gray-500'
-                  } hover:text-blue-400 hover:cursor-pointer`}
+                  } hover:text-blue-400 hover:cursor-pointer hover:scale-110 transition-all`}
                 />
               </Link>
             </li>
@@ -71,7 +71,7 @@ const NavPanel = () => {
       </div>
       <div className="h-20 flex flex-col items-center justify-end">
         <Link href={'/archive'}>
-          <Trash className="w-8 h-8 m-2 bg-blue-100 rounded-full p-1.5 text-gray-500 hover:text-red-400  hover:cursor-pointer hover:shadow-sm" />
+          <Trash className="w-8 h-8 m-2 bg-blue-100 rounded-full p-1.5 text-gray-500 hover:text-red-400  hover:cursor-pointer hover:shadow-sm hover:rotate-[360deg] hover:scale-110 transition-all duration-500	" />
         </Link>
       </div>
     </nav>

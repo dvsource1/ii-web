@@ -8,7 +8,7 @@ const SidePanel = () => {
       <div className="flex justify-between items-center">
         <div className="font-medium text-3xl">Ishini Teacher</div>
         <Link href={'settings'}>
-          <Settings className="w-8 h-8 m-2 bg-cyan-100 rounded-full p-1.5 text-gray-500 hover:text-green-400 hover:cursor-pointer hover:shadow-sm" />
+          <Settings className="w-8 h-8 m-2 bg-cyan-100 rounded-full p-1.5 text-gray-500 hover:text-green-400 hover:cursor-pointer hover:shadow-sm  hover:rotate-[360deg] hover:scale-110 transition-all duration-500" />
         </Link>
       </div>
       <div className="flex justify-center items-center mt-8">
@@ -21,16 +21,16 @@ const SidePanel = () => {
         />
       </div>
       <div className="mt-8">
-        <div className="rounded-xl bg-white shadow-md p-2">
+        <div className="rounded-xl bg-white shadow-md py-2 px-4">
           <div className="grid grid-cols-2 gap-4 h-20">
-            <div className="flex text-pink-500 items-center gap-4 p-2 ">
+            <div className="flex text-pink-500 items-center gap-4 p-2 transition-all hover:scale-105">
               <Leaf className="w-8 h-8 " />
               <div className="flex flex-col">
                 <div className="text-lg font-semibold">Large</div>
                 <div className="">small-text</div>
               </div>
             </div>
-            <div className="flex text-green-500 items-center gap-4 p-2 ">
+            <div className="flex text-green-500 items-center gap-4 p-2 transition-all hover:scale-105">
               <Snowflake className="w-8 h-8 " />
               <div className="flex flex-col">
                 <div className="text-lg font-semibold">Large</div>
