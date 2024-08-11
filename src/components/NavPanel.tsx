@@ -1,46 +1,97 @@
+'use client'
+
+import { cn } from 'ii/lib/utils'
 import {
   CreditCard,
   Database,
   Highlighter,
   HomeIcon,
+  LucideProps,
   NotebookTabs,
   Trash,
   Users,
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { ForwardRefExoticComponent, RefAttributes } from 'react'
 
-const MAIN_NAVIGATIONS = [
-  {
-    icon: HomeIcon,
-    active: true,
-    href: '/dashboard',
-  },
-  {
-    icon: NotebookTabs,
-    href: '/lessons',
-  },
-  {
-    icon: Highlighter,
-    href: '/practice',
-  },
-  {
-    icon: Users,
-    href: '/students',
-  },
-  {
-    icon: CreditCard,
-    href: '/payments',
-  },
-  {
-    icon: Database,
-    href: '/database',
-  },
-]
+export interface NavigationItem {
+  icon: ForwardRefExoticComponent<
+    Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>
+  >
+  path: string
+}
 
-const NavPanel = () => {
+enum NAVIGATION_USERROLE {
+  ADMIN,
+  TEACHER,
+  STUDENT,
+}
+
+const NAVIGATIONS: {
+  // key is NAVIGATION_USER not number
+  // value is array of navigation items
+  [key in NAVIGATION_USERROLE]: NavigationItem[]
+} = {
+  [NAVIGATION_USERROLE.ADMIN]: [
+    {
+      icon: HomeIcon,
+      path: '/',
+    },
+    {
+      icon: Database,
+      path: '/database',
+    },
+  ],
+  [NAVIGATION_USERROLE.TEACHER]: [
+    {
+      icon: HomeIcon,
+      path: '/',
+    },
+    {
+      icon: NotebookTabs,
+      path: '/lessons',
+    },
+    {
+      icon: Users,
+      path: '/students',
+    },
+  ],
+  [NAVIGATION_USERROLE.STUDENT]: [
+    {
+      icon: HomeIcon,
+      path: '/',
+    },
+    {
+      icon: NotebookTabs,
+      path: '/lessons',
+    },
+    {
+      icon: Highlighter,
+      path: '/practice',
+    },
+    {
+      icon: CreditCard,
+      path: '/payments',
+    },
+  ],
+}
+
+type NavPanelProps = {
+  className?: string
+}
+
+const NavPanel: React.FC<NavPanelProps> = ({ className }) => {
+  const pathname = usePathname()
+  const userRoleNavigations = NAVIGATIONS?.[NAVIGATION_USERROLE.STUDENT] || []
+
   return (
-    <nav className="w-16 bg-blue-200 flex flex-col justify-between rounded-lg m-2">
+    <nav
+      className={cn(
+        'w-16 bg-blue-200 flex flex-col justify-between rounded-lg m-2',
+        className
+      )}>
       <div className="h-20 flex items-center justify-center">
         <Link href={'/'}>
           <Image
@@ -54,12 +105,12 @@ const NavPanel = () => {
       </div>
       <div className="flex-1 flex items-center justify-center">
         <ul className="flex flex-col gap-4">
-          {MAIN_NAVIGATIONS.map((nav, index) => (
+          {userRoleNavigations?.map((nav, index) => (
             <li key={index}>
-              <Link href={nav.href}>
+              <Link href={nav.path}>
                 <nav.icon
                   className={`w-12 h-8 px-2 py-1 ${
-                    nav.active
+                    pathname === nav.path
                       ? 'text-blue-400 bg-white/50 rounded-lg shadow-sm'
                       : 'text-gray-500'
                   } hover:text-blue-400 hover:cursor-pointer hover:scale-110 transition-all`}

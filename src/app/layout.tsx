@@ -20,17 +20,19 @@ const RootLayout = ({
   return (
     <html lang="en">
       <body className={font.className}>
-        <main className="relative min-h-screen p-8">
-          <div className="absolute flex top-0 left-0 h-screen w-screen -z-10">
+        <main className="relative min-h-screen p-4">
+          <div className="absolute hidden sm:flex top-0 left-0 h-screen w-screen -z-10">
             <div className="flex-1"></div>
-            <div className="w-[calc(25vw+1rem)] bg-[#5CCBFF]"></div>
+            <div className="w-[calc(40vw+1rem)] md:w-[calc(25vw+0.5rem)] bg-[#5CCBFF]"></div>
           </div>
-          <div className="flex bottom rounded-xl shadow-xl h-[calc(100vh-4rem)] bg-white">
-            <div className="flex-1 flex">
-              <NavPanel />
-              <div className="flex-1 p-4">{children}</div>
+          <div className="rounded-xl shadow-xl">
+            <div className="flex rounded-xl shadow-inner h-[calc(100vh-2rem)] bg-white">
+              <div className="flex-1 sm:flex hidden">
+                <NavPanel className="mr-0" />
+                <div className="flex-1 p-4">{children}</div>
+              </div>
+              <SidePanel className="w-full sm:w-[40vw] md:w-1/4 rounded-l-xl sm:rounded-l-none rounded-r-xl " />
             </div>
-            <SidePanel />
           </div>
         </main>
       </body>
