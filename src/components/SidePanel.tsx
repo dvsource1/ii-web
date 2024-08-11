@@ -15,19 +15,21 @@ const SidePanel: React.FC<SidePanelProps> = ({ className }) => {
         className
       )}>
       <div className="flex justify-between items-center">
-        <div className="font-medium text-xl md:text-3xl">Ishini Teacher</div>
+        <div className="font-normal text-xl md:text-3xl">Ishini Teacher</div>
         <Link href={'settings'}>
           <Settings className="w-8 h-8 m-2 bg-cyan-100 rounded-full p-1.5 text-gray-500 hover:text-green-400 hover:cursor-pointer hover:shadow-sm  hover:rotate-[360deg] hover:scale-110 transition-all duration-500" />
         </Link>
       </div>
       <div className="flex justify-center items-center mt-8">
-        <Image
-          className="rounded-full"
-          alt="avatar"
-          src={'/avatar.jpg'}
-          width={160}
-          height={160}
-        />
+        <div className="p-2 bg-white rounded-full">
+          <Image
+            className="rounded-full"
+            alt="avatar"
+            src={'/avatar.jpg'}
+            width={150}
+            height={150}
+          />
+        </div>
       </div>
       <div className="mt-8">
         <div className="rounded-xl bg-white shadow-md py-2 px-4">

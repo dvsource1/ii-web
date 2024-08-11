@@ -4,8 +4,12 @@ import './globals.css'
 
 import NavPanel from 'ii/components/NavPanel'
 import SidePanel from 'ii/components/SidePanel'
+import TopBar from 'ii/components/TopBar'
 
-const font = Kanit({ subsets: ['latin'], weight: ['400'] })
+const font = Kanit({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -29,7 +33,10 @@ const RootLayout = ({
             <div className="flex rounded-xl shadow-inner h-[calc(100vh-2rem)] bg-white">
               <div className="flex-1 sm:flex hidden">
                 <NavPanel className="mr-0" />
-                <div className="flex-1 p-4">{children}</div>
+                <div className="flex-1 p-4 flex flex-col">
+                  <TopBar className="mb-6" />
+                  <div className="w-full">{children}</div>
+                </div>
               </div>
               <SidePanel className="w-full sm:w-[40vw] md:w-1/4 rounded-l-xl sm:rounded-l-none rounded-r-xl " />
             </div>
