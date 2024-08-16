@@ -11,37 +11,6 @@ import {
 } from 'ii/components/ui/table'
 import { EyeIcon } from 'lucide-react'
 
-const LessonsPage = () => {
-  return (
-    <div>
-      <header className="flex justify-between">
-        <div className="">
-          <h1 className="text-4xl font-light">
-            Lessons / <span className="text-gray-400">#124</span>
-          </h1>
-          <p className="font-light">Here are the lessions</p>
-        </div>
-        <div className="flex gap-4">
-          <div className="h-32 w-44 rounded-lg bg-sky-400"></div>
-          <div className="h-32 w-44 rounded-lg bg-purple-400"></div>
-          <div className="h-32 w-44 rounded-lg bg-lime-400"></div>
-        </div>
-      </header>
-      <div className="mt-6">
-        <div className="flex justify-end gap-2">
-          <Button className="bg-green-600">Add Lesson</Button>
-          <Button className="bg-orange-600">
-            <EyeIcon />
-          </Button>
-        </div>
-        <TableDemo />
-      </div>
-    </div>
-  )
-}
-
-export default LessonsPage
-
 const invoices = [
   {
     invoice: 'INV001',
@@ -81,42 +50,67 @@ const invoices = [
   },
 ]
 
-function TableDemo() {
+const LessonsPage = () => {
   return (
-    <Table>
-      {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium text-green-500">
-              {invoice.invoice}
-            </TableCell>
-            <TableCell>{invoice.paymentStatus}</TableCell>
-            <TableCell>{invoice.paymentMethod}</TableCell>
-            <TableCell className="text-right text-purple-600">
-              {invoice.totalAmount}
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableCell className="text-green-600" colSpan={3}>
-            Total
-          </TableCell>
-          <TableCell className="text-right text-purple-800">
-            $2,500.00
-          </TableCell>
-        </TableRow>
-      </TableFooter>
-    </Table>
+    <div className="flex flex-col">
+      <header className="flex justify-between">
+        <div className="">
+          <h1 className="text-4xl font-light">
+            Lessons / <span className="text-gray-400">#124</span>
+          </h1>
+          <p className="font-light">Here are the lessions</p>
+        </div>
+        <div className="flex gap-4">
+          <div className="h-32 w-44 rounded-lg bg-sky-400"></div>
+          <div className="h-32 w-44 rounded-lg bg-purple-400"></div>
+          <div className="h-32 w-44 rounded-lg bg-lime-400"></div>
+        </div>
+      </header>
+      <div className="mt-6 flex-1 overflow-auto">
+        <div className="flex justify-end gap-2">
+          <Button className="bg-green-600">Add Lesson</Button>
+          <Button className="bg-orange-600">
+            <EyeIcon />
+          </Button>
+        </div>
+        <Table>
+          <TableCaption>A list of your recent invoices.</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">Invoice</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Method</TableHead>
+              <TableHead className="text-right">Amount</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {invoices.map((invoice) => (
+              <TableRow key={invoice.invoice}>
+                <TableCell className="font-medium text-green-500">
+                  {invoice.invoice}
+                </TableCell>
+                <TableCell>{invoice.paymentStatus}</TableCell>
+                <TableCell>{invoice.paymentMethod}</TableCell>
+                <TableCell className="text-right text-purple-600">
+                  {invoice.totalAmount}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TableCell className="text-green-600" colSpan={3}>
+                Total
+              </TableCell>
+              <TableCell className="text-right text-purple-800">
+                $2,500.00
+              </TableCell>
+            </TableRow>
+          </TableFooter>
+        </Table>
+      </div>
+    </div>
   )
 }
+
+export default LessonsPage

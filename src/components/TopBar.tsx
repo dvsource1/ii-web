@@ -16,10 +16,16 @@ const TopBar: React.FC<TopBarProps> = ({ className }) => {
           placeholder="Search"
         />
       </div>
-      <ul className="flex items-center gap-3 bg-orange-400 text-orange-200 font-medium rounded-full px-4 py-2">
-        <li className="mx-2">Upcomming</li>
-        <li className="mx-2 text-white">Active</li>
-        <li className="mx-2">Past</li>
+      <ul className="flex items-center gap-3 bg-orange-200 text-orange-200 font-medium rounded-full">
+        <li className="text-gray-600 border border-orage-700 rounded-full p-2">
+          Upcomming
+        </li>
+        <li className=" text-gray-600 border-1 border-white rounded-full p-2">
+          Active
+        </li>
+        <li className="text-gray-600 border-1 border-white rounded-full p-2">
+          Past
+        </li>
       </ul>
     </div>
   )

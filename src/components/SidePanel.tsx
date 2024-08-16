@@ -1,13 +1,38 @@
+'use client'
+
 import { Leaf, Settings, Snowflake } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { cn } from 'ii/lib/utils'
+import { KeyboardEventHandler, useEffect, useState } from 'react'
+import { useUser } from '@clerk/nextjs'
 
 type SidePanelProps = {
   className?: string
 }
 
 const SidePanel: React.FC<SidePanelProps> = ({ className }) => {
+  const [username, setUsername] = useState('...')
+  const { isLoaded, isSignedIn, user } = useUser()
+
+  useEffect(() => {
+    if (isLoaded && isSignedIn && user) {
+      setUsername(user.username ?? 'Guest2')
+    } else {
+      if (isLoaded) {
+        setUsername(localStorage.getItem('username') ?? 'Guest3')
+      }
+    }
+  }, [isLoaded, isSignedIn, user])
+
+  const handleTitleKeyDown: KeyboardEventHandler<HTMLDivElement> = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      setUsername(e.currentTarget.textContent ?? '')
+      localStorage.setItem('username', e.currentTarget.textContent ?? '')
+    }
+  }
+
   return (
     <div
       className={cn(
@@ -15,7 +40,13 @@ const SidePanel: React.FC<SidePanelProps> = ({ className }) => {
         className
       )}>
       <div className="flex justify-between items-center">
-        <div className="font-normal text-xl md:text-3xl">Ishini Teacher</div>
+        <div
+          className="font-normal text-xl md:text-3xl"
+          onKeyDown={handleTitleKeyDown}
+          contentEditable
+          suppressContentEditableWarning>
+          {username}
+        </div>
         <Link href={'settings'}>
           <Settings className="w-8 h-8 m-2 bg-cyan-100 rounded-full p-1.5 text-gray-500 hover:text-green-400 hover:cursor-pointer hover:shadow-sm  hover:rotate-[360deg] hover:scale-110 transition-all duration-500" />
         </Link>
